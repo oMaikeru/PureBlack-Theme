@@ -1,2 +1,15 @@
 # PureBlack-Theme
-Simple pure black theme for league of legends client.
+
+## How to install?
+
+-  Download and install [Pengu Loader](https://github.com/PenguLoader/PenguLoader)
+-  Put the **theme** folder into the **plugins** folder
+
+
+## Images
+
+<center>
+
+![](https://i.imgur.com/mL2FXl6.png)
+
+<center>
