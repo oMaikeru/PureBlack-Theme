@@ -1,8 +1,7 @@
-//IMPORT-CSS-AND-SOME-STUFF//
+//IMPORT//
 import utils from './_utils';
 import data from './configs/config.json';
 import '//plugins/theme/assets/theme.css';
-import 'https://cdn.skypack.dev/teaminsight'
 
 //SETTINGS//
 window.setInterval(() => { 
