@@ -3,26 +3,77 @@ import utils from './_utils';
 import data from './configs/config.json';
 import '//plugins/theme/assets/theme.css';
 
-//SETTINGS//
-window.setInterval(() => { 
+//SHADOWROOT//
+window.setInterval(() => {
 	try {
 		document.getElementsByClassName("lol-settings-container")[0].style.backgroundColor = "black";
 		document.querySelector(".lol-settings-container").
-            shadowRoot.querySelector("div").style.background = "black";
-	}
-	catch {}
+			shadowRoot.querySelector("div").style.background = "black";
+	} catch { }
 	try {
 		document.querySelector("lol-uikit-full-page-backdrop > lol-uikit-dialog-frame > div").style.backgroundColor = "black";
 		document.querySelector("lol-uikit-full-page-backdrop > lol-uikit-dialog-frame").
-            shadowRoot.querySelector("div").style.background = "black";
-	}
-	catch {}
+			shadowRoot.querySelector("div").style.background = "black";
+	} catch { }
 	try {
 		document.querySelector("#lol-uikit-layer-manager-wrapper > div.modal > div > lol-uikit-dialog-frame").
-            shadowRoot.querySelector("div").style.background = "black"
+			shadowRoot.querySelector("div").style.background = "black"
+	} catch { }
+})
+
+window.setInterval(() => {
+	try {
+		let el = document.querySelector("div.identity-and-parties").querySelector("lol-social-panel > lol-parties-game-info-panel").shadowRoot.querySelector("div > div.parties-game-info-panel-content > lol-parties-status-card").shadowRoot.querySelector("div > div.parties-status-card-bg-container")
+
+		if (el) {
+			el.removeChild(el.firstElementChild);
+			el.parentElement.style.background = "#000000";
+		}
+	} catch { }
+})
+
+window.setInterval(() => {
+	try {
+		let doc = document.querySelector("lol-social-panel>lol-parties-game-info-panel")
+		let shadowDoc1 = doc.shadowRoot.querySelector(".parties-game-section .parties-game-info-panel-content>lol-parties-game-search")
+		let shadowDoc2 = shadowDoc1.shadowRoot.querySelector(".parties-game-search-status .parties-game-search-divider")
+
+		shadowDoc2.style.backgroundColor = "black"
+	} catch { }
+})
+
+const removePartiesTooltip = async () => {
+	let targetNode
+	while (!document.getElementById('lol-uikit-layer-manager-wrapper')) {
+		await new Promise(r => setTimeout(r, 300))
 	}
-	catch {}
-}, 1)
+	targetNode = document.getElementById('lol-uikit-layer-manager-wrapper')
+	const config = {
+		childList: true,
+		subtree: true
+	};
+	const callback = function (mutationsList) {
+		for (let mutation of mutationsList) {
+			if (mutation.addedNodes.length > 0 &&
+				mutation.addedNodes[0].className === "lol-uikit-contextual-notification-targeted-layer" &&
+				mutation.addedNodes[0].hasChildNodes("lol-uikit-content-block.parties-first-experience-tooltip")
+			) {
+
+				targetNode.removeChild(mutation.addedNodes[0])
+				console.log("target removed")
+			}
+
+		}
+	}
+	const observer = new MutationObserver(callback);
+	observer.observe(targetNode, config);
+}
+
+window.addEventListener('load', async () => {
+	utils.subscribe_endpoint('/lol-gameflow/v1/gameflow-phase', autoAcceptCallback)
+	utils.routineAddCallback(autoAcceptMutationObserver, ["v2-footer-notifications.ember-view"])
+	removePartiesTooltip()
+})
 
 
 //DODGE-BUTTON-PLUGIN//
