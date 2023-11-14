@@ -7,12 +7,13 @@
 
 ## Plugins
 
-- The integrated plugins are from [Lyfhael Repository](https://github.com/teisseire117/league-loader-plugins/tree/main/plugins)
+- The dodge button plugin is from [Lyfhael Repository](https://github.com/teisseire117/league-loader-plugins/tree/main/plugins)
+- If you want to add more plugins i personally suggest [Sakura Repository](https://github.com/MashToolZ/PenguPlugins)
 
 ## Image
 
 <center>
 
-![](https://i.imgur.com/61dGTgH.png)
+![](https://i.imgur.com/l1HTLQh.png)
 
 <center>
