@@ -62,6 +62,23 @@
   border-right: thin solid #785a28 !important;
 }
 
+.mission-tracker-component{
+  background: black !important;
+}
+
+.mission-tracker-component .mission-tray-header{
+  background: black !important;
+}
+
+.currency-rp-container-top-up-enabled{
+  background-color: black !important;
+  border: none !important;
+}
+
+.currency-rp-top-up {
+  margin-right: 20px;
+}
+
 /*EVENT-SHOP*/
 .rcp-fe-lol-event-shop-application{
   background-image: none !important;
