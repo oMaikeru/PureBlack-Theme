@@ -1,6 +1,5 @@
 //IMPORT//
 import utils from './_utils';
-import data from './configs/config.json';
 import '//plugins/theme/assets/theme.css';
 
 //SHADOWROOT//
@@ -114,72 +113,6 @@ let addDodgeAndExitButtonObserver = (mutations) => {
 
 window.addEventListener('load', () => {
 	utils.routineAddCallback(addDodgeAndExitButtonObserver, ["bottom-right-buttons"])
-})
-	
-//AUTO-ACCEPT//
-let auto_accept = data["is_auto_accept_enabled"]
-let queue_accepted = false
-
-
-function autoAcceptQueueButton() {
-	let element = document.getElementById("autoAcceptQueueButton")
-	if (element.attributes.selected != undefined) {
-		auto_accept = false
-		element.removeAttribute("selected")
-	} else {
-		element.setAttribute("selected", "true")
-		auto_accept = true
-	}
-}
-
-window.autoAcceptQueueButton = autoAcceptQueueButton
-
-
-let autoAcceptCallback = async message => {
-	utils.phase = JSON.parse(message["data"])[2]["data"]
-	if (utils.phase == "ReadyCheck" && auto_accept && !queue_accepted) {
-		await acceptMatchmaking()
-		queue_accepted = true
-	} else if (utils.phase != "ReadyCheck") {
-		queue_accepted = false
-	}
-}
-
-function fetch_or_create_champselect_buttons_container() {
-	if (document.querySelector(".cs-buttons-container")) {
-		return document.querySelector(".cs-buttons-container")
-	} else {
-		const div = document.createElement("div")
-
-		div.className = "cs-buttons-container"
-		document.querySelector(".v2-footer-notifications.ember-view").append(div)
-		return div
-	}
-}
-
-
-let autoAcceptMutationObserver = (mutations) => {
-	if (document.querySelector(".v2-footer-notifications.ember-view") != null && document.getElementById("autoAcceptQueueButton") == null) {
-		let newOption = document.createElement("lol-uikit-radio-input-option");
-		let container = fetch_or_create_champselect_buttons_container()
-
-		newOption.setAttribute("id", "autoAcceptQueueButton");
-		newOption.setAttribute("onclick", "window.autoAcceptQueueButton()");
-		if (auto_accept) {
-			newOption.setAttribute("selected", "");
-		}
-		newOption.innerHTML = "<div class='auto-accept-button-text'>Auto Accept</div>";
-		container.append(newOption);
-	}
-}
-
-window.addEventListener('load', () => {
-	utils.subscribe_endpoint('/lol-gameflow/v1/gameflow-phase', autoAcceptCallback)
-	utils.routineAddCallback(autoAcceptMutationObserver, ["v2-footer-notifications.ember-view"])
-})
-
-let acceptMatchmaking = async () => await fetch('/lol-matchmaking/v1/ready-check/accept', {
-	method: 'POST'
 })
 
 console.log('theme injected')
