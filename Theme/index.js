@@ -1,21 +1,15 @@
 export function init(context) {
-    // Load CSS
     window.addEventListener("load", () => {
         addCss(`https://plugins/${getPluginName()}/theme.css`)
     })
 }
 
-export function load() {
-    domOps()
-    shadowDomOps()
-}
-
 function getPluginName() {
-	let scriptPath = getScriptPath()
-	let regex = /\/([^/]+)\/index\.js$/
-	let match = scriptPath.match(regex)
-	let pluginName = match ? match[1]:null
-	return pluginName
+    let scriptPath = getScriptPath()
+    let regex = /\/([^/]+)\/index\.js$/
+    let match = scriptPath.match(regex)
+    let pluginName = match ? match[1] : null
+    return pluginName
 }
 
 function addCss(filename) {
@@ -26,10 +20,14 @@ function addCss(filename) {
     document.body.append(style)
 }
 
-export function domOps(){
-    removePartiesTooltip()
+export function load() {
+    domOps()
+    shadowDomOps()
 }
 
+export function domOps() {
+    removePartiesTooltip()
+}
 
 const removePartiesTooltip = async () => {
     let targetNode
@@ -63,15 +61,9 @@ export function shadowDomOps() {
         try {
             document.getElementsByClassName("lol-settings-container")[0].style.backgroundColor = "black";
             document.querySelector(".lol-settings-container").
-                shadowRoot.querySelector("div").style.background = "black";
-        } catch { }
-        try {
-            document.querySelector("lol-uikit-full-page-backdrop > lol-uikit-dialog-frame > div").style.backgroundColor = "black";
+                document.querySelector("lol-uikit-full-page-backdrop > lol-uikit-dialog-frame > div").style.backgroundColor = "black";
             document.querySelector("lol-uikit-full-page-backdrop > lol-uikit-dialog-frame").
-                shadowRoot.querySelector("div").style.background = "black";
-        } catch { }
-        try {
-            document.querySelector("#lol-uikit-layer-manager-wrapper > div.modal > div > lol-uikit-dialog-frame").
+                document.querySelector("#lol-uikit-layer-manager-wrapper > div.modal > div > lol-uikit-dialog-frame").
                 shadowRoot.querySelector("div").style.background = "black"
         } catch { }
     })
