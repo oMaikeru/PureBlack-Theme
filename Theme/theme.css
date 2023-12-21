@@ -113,8 +113,3 @@
  .uikit-background-switcher .lol-uikit-background-switcher-image.transition.fade {
 	animation: unset !important
 }
-
-/*DODGE-BUTTON*/
- .champion-select .quit-button {
-  width: 115px;
-}
