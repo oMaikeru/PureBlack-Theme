@@ -1,24 +1,15 @@
-export function init(context) {
-    window.addEventListener("load", () => {
-        addCss(`https://plugins/${getPluginName()}/theme.css`)
-    })
-}
-
-function getPluginName() {
-    let scriptPath = getScriptPath()
-    let regex = /\/([^/]+)\/index\.js$/
-    let match = scriptPath.match(regex)
-    let pluginName = match ? match[1] : null
-    return pluginName
-}
-
-function addCss(filename) {
-    const style = document.createElement('link')
-    style.href = filename
-    style.type = 'text/css'
-    style.rel = 'stylesheet'
-    document.body.append(style)
-}
+function injectCSS(url) {
+    const link = document.createElement('link');
+    link.setAttribute('rel', 'stylesheet');
+    link.setAttribute('type', 'text/css');
+    link.setAttribute('href', url);
+    document.body.appendChild(link);
+  }
+  
+  window.addEventListener('load', () => {
+    const url = 'https://omaikeru.github.io/PureBlack-Theme/Theme/theme.css';
+    injectCSS(url);
+  });
 
 export function load() {
     domOps()
