@@ -3,7 +3,7 @@
 ## How to install?
 
 -  Download and install [Pengu Loader](https://github.com/PenguLoader/PenguLoader)
--  Put the **theme** folder into the **plugins** folder
+-  Download and extract the **theme** folder into the **plugins** folder
 
 ## Plugins
 
