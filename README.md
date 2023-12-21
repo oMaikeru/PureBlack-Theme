@@ -7,7 +7,7 @@
 
 ## Plugins
 
-- The dodge button plugin is from [Lyfhael Repository](https://github.com/teisseire117/league-loader-plugins/tree/main/plugins)
+- You can add a [Dodge Button Plugin](https://github.com/oMaikeru/DodgeButton) 
 - If you want to add more plugins i personally suggest [Sakura Repository](https://github.com/MashToolZ/PenguPlugins)
 
 ## Image
