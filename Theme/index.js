@@ -1,15 +1,4 @@
-function injectCSS(url) {
-    const link = document.createElement('link');
-    link.setAttribute('rel', 'stylesheet');
-    link.setAttribute('type', 'text/css');
-    link.setAttribute('href', url);
-    document.body.appendChild(link);
-  }
-  
-  window.addEventListener('load', () => {
-    const url = 'https://omaikeru.github.io/PureBlack-Theme/Theme/theme.css';
-    injectCSS(url);
-  });
+import "./theme.css"
 
 export function load() {
     domOps()
