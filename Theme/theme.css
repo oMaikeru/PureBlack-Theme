@@ -92,11 +92,6 @@
    .event-shop-progression-info{
     background: black !important;
   }
-
-  /*AUTOFILL-ICON*/
-    .autofill-notification-component .autofill-warning {
-        display: none !important;
-  }
   
   /*GAME-IN-PROGRESS*/
    .rcp-fe-lol-game-in-progress {
